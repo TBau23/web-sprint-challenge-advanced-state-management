@@ -6,21 +6,17 @@ import { FETCH_SMURFS,
      FETCH_SMURFS_ERROR,
       FETCH_SMURFS_SUCCESS,
     POST_SMURF,
-POST_SMURF_ERROR,
-POST_SMURF_SUCCESS} 
+    POST_SMURF_ERROR,
+    POST_SMURF_SUCCESS} 
       from '../actions/actionIndex'
 
 const initialState = {
     smurfs: [],
     loadingSmurfs: true,
     addingSmurf: false,
-    formValues: {
-        name: '',
-        age: '',
-        height: ''
     }
     
-}
+
 
 export default (state = initialState, action = {}) => {
     switch(action.type) {
@@ -41,6 +37,21 @@ export default (state = initialState, action = {}) => {
                 smurfs: action.payload
             }
         case POST_SMURF:
+            return {
+                ...state,
+                addingSmurf: true
+            }
+        case POST_SMURF_SUCCESS:
+            return {
+                ...state,
+                addingSmurf: false,
+                smurfs: action.payload
+            }
+        case POST_SMURF_ERROR:
+            return {
+                ...state,
+                addingSmurf: false
+            }
 
         default:
             return state;

@@ -32,11 +32,11 @@ export const postSmurf = (newSmurf) => {
         axios.post('http://localhost:3333/smurfs', newSmurf)
         .then(res => {
             console.log(res)
-            dispatch({type: POST_SMURF_SUCCESS, payload: []})
+            dispatch({type: POST_SMURF_SUCCESS, payload: res.data})
         })
         .catch(error => {
             console.error(error)
-            dispatch({type: FETCH_SMURFS_ERROR, payload: []})
+            dispatch({type: FETCH_SMURFS_ERROR, payload: error})
         })
     }
 }
