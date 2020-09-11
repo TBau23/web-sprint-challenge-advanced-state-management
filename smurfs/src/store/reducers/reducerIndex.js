@@ -1,11 +1,25 @@
+import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
+
+
 import { FETCH_SMURFS,
      FETCH_SMURFS_ERROR,
-      FETCH_SMURFS_SUCCESS} 
+      FETCH_SMURFS_SUCCESS,
+    POST_SMURF,
+POST_SMURF_ERROR,
+POST_SMURF_SUCCESS} 
       from '../actions/actionIndex'
 
 const initialState = {
     smurfs: [],
-    loadingSmurfs: true
+    loadingSmurfs: true,
+    addingSmurf: false,
+    formValues: {
+        name: '',
+        age: '',
+        height: ''
+    }
+    
 }
 
 export default (state = initialState, action = {}) => {
@@ -26,7 +40,10 @@ export default (state = initialState, action = {}) => {
                 loadingSmurfs: false,
                 smurfs: action.payload
             }
+        case POST_SMURF:
+
         default:
             return state;
     }
 }
+
